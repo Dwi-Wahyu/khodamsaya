@@ -7,7 +7,7 @@
 		'bereng bereng',
 		'mall sudiang',
 		'kampas rem',
-		'mamat',
+		'mamat ',
 		'pitti',
 		'yanti gotong'
 	];
@@ -18,22 +18,25 @@
 	let loading = false;
 	let nama = '';
 
-	function random() {}
+	function onSubmit() {
+		loading = true;
 
-	function cekKhodam() {
 		namaStore.set(nama);
 
 		var item = khodam[Math.floor(Math.random() * khodam.length)];
 
 		kodamStore.set(item);
 
-		goto('/khodam');
+		setTimeout(() => {
+			loading = false;
+			goto('/khodam');
+		}, 3000);
 	}
 </script>
 
 <div class="rounded-xl bg-slate-800 p-5 shadow">
 	{#if !loading}
-		<div>
+		<form on:submit={onSubmit}>
 			<label for="nama">Masukkan nama Anda :</label>
 			<input
 				type="text"
@@ -42,16 +45,16 @@
 				name="nama"
 				bind:value={nama}
 				placeholder="Nyolit"
+				required
 			/>
 
 			<button
-				on:click={cekKhodam}
 				class="w-full mt-4 py-4 rounded-2xl text-white flex justify-center gap-2 items-center font-semibold text-lg bg-slate-900 border hover:bg-transparent hover:text-slate-900 border-slate-900 ease-in-out duration-300 transition-all"
 			>
 				Cek Kodam
 				<Icon icon="icon-park-twotone:search" width="1.2em" height="1.2em" />
 			</button>
-		</div>
+		</form>
 	{/if}
 
 	{#if loading}
