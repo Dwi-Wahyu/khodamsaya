@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^5.4.1",
 		"svelte-loading-spinners": "^0.3.6"
 	}
 }
